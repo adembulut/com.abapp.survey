@@ -1,7 +1,7 @@
 package com.abapp.survey.front.interceptor;
 
 import com.abapp.survey.contract.model.auth.Authority;
-import com.abapp.survey.contract.model.auth.PageAuthority;
+import com.abapp.survey.contract.model.auth.Page;
 import com.abapp.survey.contract.model.user.AdminUser;
 import com.abapp.survey.contract.service.AuthorizationService;
 import com.abapp.survey.front.exception.UserNotAuthorizedException;
@@ -22,10 +22,10 @@ import java.util.Set;
 */
 public class AuthorizationInterceptor implements HandlerInterceptor {
     private AuthorizationService authorizationService;
-    private Set<PageAuthority> pageAuthoritySet;
+    private List<Page> pageSet;
 
     public void init() {
-        pageAuthoritySet = authorizationService.getAllPageAuthorityList();
+        pageSet = authorizationService.getAllPages();
     }
 
     @Override
@@ -48,7 +48,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         }
 
         String finalPathInfo = pathInfo;
-        Optional<PageAuthority> optionalPageAuthority = pageAuthoritySet.stream().filter(x->x.getUrl().equalsIgnoreCase(finalPathInfo)).findFirst();
+        Optional<Page> optionalPageAuthority = pageSet.stream().filter(x->x.getUrl().equalsIgnoreCase(finalPathInfo)).findFirst();
         if(!optionalPageAuthority.isPresent()){
             return true;
         }
@@ -65,11 +65,11 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         }
         AdminUser user = (AdminUser) userObject;
         List<Authority> authorityList = user.getAuthorityList();
-        PageAuthority pageAuthority = optionalPageAuthority.get();
+        Page page = optionalPageAuthority.get();
 
-        if(pageAuthority.getAuthorityList()!=null){
+        if(page.getAuthorityList()!=null){
             boolean have = false;
-            for (Authority authority : pageAuthority.getAuthorityList()) {
+            for (Authority authority : page.getAuthorityList()) {
                 if(authorityList.contains(authority)){
                     have=true;
                 }

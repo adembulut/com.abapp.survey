@@ -8,7 +8,7 @@ import java.util.List;
     User    : adem.bulut
     Date    : 2/14/21 03:29
 */
-public class PageAuthority implements Serializable {
+public class Page implements Serializable {
     private String url;
     private String description;
     private List<Authority> authorityList;
@@ -36,4 +36,5 @@ public class PageAuthority implements Serializable {
     public void setAuthorityList(List<Authority> authorityList) {
         this.authorityList = authorityList;
     }
+
 }

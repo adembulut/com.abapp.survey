@@ -6,4 +6,21 @@ package com.abapp.survey.front.exception;
     Date    : 2/14/21 00:52
 */
 public class UserNotAuthenticatedException extends Exception{
+    private String message;
+
+    public UserNotAuthenticatedException() {
+    }
+
+    public UserNotAuthenticatedException(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

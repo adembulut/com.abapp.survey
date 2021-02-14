@@ -1,5 +1,6 @@
 package com.abapp.survey.front.controller;
 
+import com.abapp.survey.front.util.ProjectConstant;
 import com.abapp.survey.front.util.UserProfileManager;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Controller;
@@ -26,7 +27,11 @@ public class HomeController {
     }
 
     @GetMapping(value = {"/login"})
-    public String getLogin() {
+    public String getLogin(HttpServletRequest request,ModelMap map) {
+        String errorMessage =(String)request.getAttribute(ProjectConstant.APP_ATTRIBUTE_ERROR);
+        if(errorMessage!=null){
+            map.put(ProjectConstant.APP_ATTRIBUTE_ERROR,errorMessage);
+        }
         return "login";
     }
 
@@ -34,11 +39,6 @@ public class HomeController {
     public String logout(HttpServletRequest request){
         UserProfileManager.removeLocalUser(request);
         return "index";
-    }
-
-    @RequestMapping(value = {"/error/403"})
-    public String error403(){
-        return "error/403";
     }
 
     @RequestMapping(value = {"/authority-test"})

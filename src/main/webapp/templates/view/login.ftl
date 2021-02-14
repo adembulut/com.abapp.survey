@@ -77,6 +77,23 @@
                             </div>
                         </div>
 
+                        <#if error??>
+                            <style>
+                                .login-error{
+                                    color: red;
+                                    border: 1px solid red;
+                                    border-radius: 3px;
+                                    padding: 5px;
+                                }
+                            </style>
+                            <div class="form-group has-feedback has-feedback-left login-error">
+                                <center>
+                                    <@spring.message code='${error}'/>
+                                </center>
+                            </div>
+                        </#if>
+
+
                         <div class="form-group">
                             <button type="submit" class="btn bg-pink-400 btn-block"><@spring.message code='survey.general.signIn'/> <i class="icon-circle-right2 position-right"></i></button>
                         </div>

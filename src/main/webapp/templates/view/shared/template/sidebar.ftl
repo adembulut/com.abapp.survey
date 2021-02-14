@@ -2,42 +2,6 @@
     <div class="sidebar sidebar-main sidebar-default">
         <div class="sidebar-content">
 
-            <!-- User menu -->
-            <div class="sidebar-user-material">
-                <div class="category-content">
-                    <div class="sidebar-user-material-content">
-                        <a href="#"><img src="assets/images/demo/users/face12.jpg" class="img-circle img-responsive"
-                                         alt=""></a>
-                        <h6>
-                            ${applicationUser.nameSurname}
-                        </h6>
-                        <span class="text-size-small">${applicationUser.email}</span>
-                    </div>
-
-                    <div class="sidebar-user-material-menu">
-                        <a href="#user-nav"
-                           data-toggle="collapse"><span><@spring.message code='survey.general.myAccount'/></span> <i
-                                    class="caret"></i></a>
-                    </div>
-                </div>
-
-                <div class="navigation-wrapper collapse" id="user-nav">
-                    <ul class="navigation">
-                        <li><a href="#"><i class="icon-user-plus"></i> <span>
-                                    <@spring.message code='survey.general.myProfile'/>
-                                </span></a></li>
-                        <#--                        <li><a href="#"><i class="icon-coins"></i> <span>My balance</span></a></li>-->
-                        <#--                        <li><a href="#"><i class="icon-comment-discussion"></i> <span><span class="badge bg-teal-400 pull-right">58</span> Messages</span></a></li>-->
-                        <#--                        <li class="divider"></li>-->
-                        <#--                        <li><a href="#"><i class="icon-cog5"></i> <span>Account settings</span></a></li>-->
-                        <li><a href="/logout"><i class="icon-switch2"></i>
-                                <span><@spring.message code='survey.general.logout'/></span></a></li>
-                    </ul>
-                </div>
-            </div>
-            <!-- /user menu -->
-
-
             <!-- Main navigation -->
             <div class="sidebar-category sidebar-category-visible">
                 <div class="category-content no-padding">
@@ -66,9 +30,11 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#"><i class="icon-copy"></i> <span>Layouts</span></a>
+                            <a href="#"><i class="icon-copy"></i> <span>
+                                    <@spring.message code='survey.menu.authorityManagement'/>
+                                </span></a>
                             <ul>
-                                <li><a href="../index.html" id="layout1">Layout 1</a></li>
+                                <li><a href="/authority/roles" id="roles"><@spring.message code='survey.menu.roles'/></a></li>
                                 <li><a href="index.html" id="layout2">Layout 2 <span class="label bg-warning-400">Current</span></a>
                                 </li>
                                 <li><a href="../../../layout_3/LTR/index.html" id="layout3">Layout 3</a></li>

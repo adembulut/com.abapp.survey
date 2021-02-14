@@ -42,5 +42,5 @@
 
 
     <import resource="front/services.xml"/>
-    <import resource="backend/services.xml"/>
+    <import resource="backend/backend-main.xml"/>
 </beans>

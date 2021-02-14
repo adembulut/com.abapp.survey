@@ -59,7 +59,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 LOGGER.debug("::preHandle sessionId:" + sessionId + " path:" + pathInfo + " user.email:" + user.getEmail());
             }
         }
-
+        String errorMessage = null;
         if ((!(userObject instanceof AdminUser)) || isLoginRequest(request, pathInfo)) {
 
             if (userObject != null)
@@ -70,7 +70,13 @@ public class LoginInterceptor implements HandlerInterceptor {
                         request.getParameter(ProjectConstant.APP_USERNAME_PARAM),
                         request.getParameter(ProjectConstant.APP_TOKEN_PARAM), userObject);
             }
+
             AdminUser user = checkLogin(session, request);
+            String username = RequestUtils.getString(request,ProjectConstant.APP_USERNAME_PARAM,null);
+            String password = RequestUtils.getString(request,ProjectConstant.APP_PASSWORD_PARAM,null);
+            if(username!=null||password!=null){
+                errorMessage = "survey.login.error";
+            }
 
             if (user != null) {
                 userObject = user;
@@ -113,8 +119,8 @@ public class LoginInterceptor implements HandlerInterceptor {
             if (request.getHeader("accept").contains("application/json")) {
                 throw new UserNotAuthenticatedExceptionJSON(pathInfo);
             }
-
-            throw new UserNotAuthenticatedException();
+            request.setAttribute(ProjectConstant.APP_ATTRIBUTE_ERROR,errorMessage);
+            throw new UserNotAuthenticatedException(errorMessage);
         }
 
         UserProfileManager.setLocalUser(request, (AdminUser) userObject);
