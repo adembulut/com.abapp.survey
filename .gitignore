@@ -47,4 +47,23 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
+.DS_Store
+/work/
+/lib/
+/target/
+/logs/
+/doc/generation/
+.project
+.classpath
+.settings
+.settings/*
+.loadpath
+org.eclipse.*
+.project
+/out/
+/.idea/
+/.iml
+.iml
+/bin/
+.wtpmodules
 
