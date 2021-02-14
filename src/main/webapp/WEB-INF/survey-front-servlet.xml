@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd
+        	   http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    <context:component-scan base-package="com.abapp"/>
+    <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="order" value="1"/>
+        <property name="cache" value="false"/>
+        <property name="prefix" value="/view/"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="contentType" value="text/html;charset=UTF-8"/>
+    </bean>
+
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="configuration" ref="freemarker.configuration"/>
+    </bean>
+    <bean id="freemarker.configuration" class="com.abapp.survey.front.config.FreeMarkerConfiguration">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="settings">
+            <props>
+                <prop key="template_update_delay">10</prop>
+                <prop key="locale">tr_TR</prop>
+                <prop key="number_format">0.####</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">ignore</prop>
+                <prop key="auto_import">/view/spring.ftl as spring</prop>
+                <prop key="url_escaping_charset">UTF-8</prop>
+            </props>
+        </property>
+        <property name="directoryForTemplateLoading" ref="webUtil"/>
+    </bean>
+    <bean name="webUtil" class="org.springframework.web.util.WebUtils" factory-method="getRealPath">
+        <constructor-arg name="servletContext" ref="servletContext"/>
+        <constructor-arg name="path" value="/templates/"/>
+    </bean>
+
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+<!--                <prop key="java.lang.Exception">error/error</prop>-->
+                <prop key="com.abapp.survey.front.exception.UserNotAuthenticatedException">login</prop>
+                <prop key="com.abapp.survey.front.exception.UserNotAuthorizedException">error/403</prop>
+
+<!--                <prop key="com.abapp.survey.front.exception.UserNotAuthenticatedExceptionJSON">error/notAuthenticatedJson</prop>-->
+            </props>
+        </property>
+    </bean>
+
+
+
+
+
+
+    <import resource="components/main.xml"/>
+</beans>
