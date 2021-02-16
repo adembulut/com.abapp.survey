@@ -41,6 +41,6 @@
     </mvc:interceptors>
 
 
-    <import resource="front/services.xml"/>
+    <import resource="front/front-main.xml"/>
     <import resource="backend/backend-main.xml"/>
 </beans>

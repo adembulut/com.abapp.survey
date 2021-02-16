@@ -70,6 +70,23 @@
     </div>
     <!-- /page container -->
 
+    <!--modals-->
+    <div id="modal_default" class="modal fade" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
+                    <h5 class="modal-title">modal title</h5>
+                </div>
+
+                <div class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/modals-->
+
     <!-- Core JS files -->
     <script type="text/javascript" src="/assets/js/plugins/loaders/pace.min.js"></script>
     <script type="text/javascript" src="/assets/js/core/libraries/jquery.min.js"></script>
@@ -80,6 +97,7 @@
     <!-- Theme JS files -->
     <script type="text/javascript" src="/assets/js/core/app.js"></script>
     <script type="text/javascript" src="/assets/js/plugins/ui/ripple.min.js"></script>
+    <script type="text/javascript" src="/assets/app/js/application.js"></script>
     <!-- /theme JS files -->
     <#call footerSection/>
 

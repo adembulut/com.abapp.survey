@@ -1,7 +1,7 @@
 <#macro header>
     <div class="navbar navbar-inverse bg-indigo">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
+            <a class="navbar-brand" href="index.html"><img src="/assets/images/logo_light.png" alt=""></a>
 
             <ul class="nav navbar-nav visible-xs-block">
                 <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
@@ -107,12 +107,12 @@
                         <ul class="dropdown-menu">
                             <li class="<#if .locale=='en'>active</#if>">
                                 <a class="english" href="?locale=en">
-                                    <img src="assets/images/flags/gb.png" alt=""> English
+                                    <img src="/assets/images/flags/gb.png" alt=""> English
                                 </a>
                             </li>
                             <li class="<#if .locale=='tr'>active</#if>">
                                 <a class="turkish" href="?locale=tr">
-                                    <img src="assets/images/flags/tr.png" alt=""> Türkçe
+                                    <img src="/assets/images/flags/tr.png" alt=""> Türkçe
                                 </a>
                             </li>
                         </ul>

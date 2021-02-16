@@ -12,4 +12,8 @@
         <property name="authorizationService" ref="authorizationService"/>
         <property name="connectionPool" ref="connectionPool"/>
     </bean>
+
+    <bean name="authorityService" class="com.abapp.survey.backend.service.impl.AuthorityServiceImpl">
+        <property name="connectionPool" ref="connectionPool"/>
+    </bean>
 </beans>
