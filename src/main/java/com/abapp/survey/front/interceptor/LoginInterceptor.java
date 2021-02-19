@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Enumeration;
+import java.util.Locale;
 
 /*
     Project : com.abapp.survey
@@ -30,11 +31,14 @@ public class LoginInterceptor implements HandlerInterceptor {
     private boolean checkCookie = false;
     private String cookieName = "uuid";
 
+    private boolean securityEnabled;
+
     private UserLoginService userLoginService;
 
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+
         HttpSession session = request.getSession(false);
 
         String pathInfo = request.getPathInfo();
@@ -46,7 +50,6 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (session != null) {
             userObject = session.getAttribute(ProjectConstant.APP_USER_SESSION);
         }
-
         if (LOGGER.isDebugEnabled()) {
             String sessionId = null;
 
@@ -59,6 +62,22 @@ public class LoginInterceptor implements HandlerInterceptor {
                 LOGGER.debug("::preHandle sessionId:" + sessionId + " path:" + pathInfo + " user.email:" + user.getEmail());
             }
         }
+
+        //security-disabled begin
+        if(!securityEnabled) {
+            if (userObject == null) {
+                AdminUser adminUser = new AdminUser();
+                adminUser.setUsername("adembulut");
+                adminUser.setNameSurname("Adem Bulut");
+                adminUser.setEmail("adembulutapp@gmail.com");
+                adminUser.setLocale(Locale.forLanguageTag("tr_TR"));
+                adminUser.setUserId(1);
+                userObject = adminUser;
+            }
+        }
+        //security-disabled end
+
+
         String errorMessage = null;
         if ((!(userObject instanceof AdminUser)) || isLoginRequest(request, pathInfo)) {
 
@@ -210,5 +229,13 @@ public class LoginInterceptor implements HandlerInterceptor {
 
     public void setUserLoginService(UserLoginService userLoginService) {
         this.userLoginService = userLoginService;
+    }
+
+    public boolean isSecurityEnabled() {
+        return securityEnabled;
+    }
+
+    public void setSecurityEnabled(boolean securityEnabled) {
+        this.securityEnabled = securityEnabled;
     }
 }
