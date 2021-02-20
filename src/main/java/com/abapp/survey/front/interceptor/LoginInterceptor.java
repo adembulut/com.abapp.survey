@@ -162,7 +162,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 object=session.getAttribute(ProjectConstant.APP_USER_SESSION);
             }
         }
-        if(object!=null){
+        if(object!=null&&modelAndView!=null){
             modelAndView.addObject(ProjectConstant.APP_USER_SESSION,object);
         }
     }

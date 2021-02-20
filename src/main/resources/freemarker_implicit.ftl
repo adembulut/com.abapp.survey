@@ -1,3 +1,3 @@
 [#ftl]
 [#-- @implicitly included --]
-[#-- @ftlroot "../webapp/templates/" --]
+[#-- @ftlroot "../webapp/WEB-INF/views/ftl/" --]

@@ -1,6 +1,6 @@
-<#import "/view/shared/template/sidebar.ftl" as sidebar/>
-<#import "/view/shared/template/footer.ftl" as footer/>
-<#import "/view/shared/template/header.ftl" as header/>
+<#import "/shared/template/sidebar.ftl" as sidebar/>
+<#import "/shared/template/footer.ftl" as footer/>
+<#import "/shared/template/header.ftl" as header/>
 <#macro html title="Survey Management" headerSection="" footerSection="" breadCrumb="">
     <!DOCTYPE html>
     <html lang="en">
@@ -97,8 +97,11 @@
     <!-- /core JS files -->
 
     <!-- Theme JS files -->
+    <script type="text/javascript" src="/assets/js/plugins/forms/validation/validate.min.js"></script>
+    <script type="text/javascript" src="/assets/js/plugins/forms/styling/uniform.min.js"></script>
+
+
     <script type="text/javascript" src="/assets/js/core/app.js"></script>
-<#--    <script type="text/javascript" src="/assets/js/plugins/ui/ripple.min.js"></script>-->
     <script type="text/javascript" src="/assets/app/js/application.js"></script>
     <!-- /theme JS files -->
     <#call footerSection/>

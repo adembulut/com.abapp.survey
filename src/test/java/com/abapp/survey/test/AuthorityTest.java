@@ -14,7 +14,7 @@
 //
 //    @Test
 //    public void run() {
-//        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:survey-front-servlet.xml");
+//        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:dispatcher-servlet.xml");
 //        AuthorizationService service = (AuthorizationService) context.getBean("authorizationService");
 //
 //        System.out.println();

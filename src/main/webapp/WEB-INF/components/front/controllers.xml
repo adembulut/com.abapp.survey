@@ -3,8 +3,11 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans   http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean name="authorityController" class="com.abapp.survey.front.controller.AuthorityController">
-<!--        <property name="authorityService" ref="authorityServiceOld"/>-->
         <property name="authorityService" ref="authorityService"/>
+    </bean>
+
+    <bean name="sharedController" class="com.abapp.survey.front.controller.SharedController">
+        <property name="messageSource" ref="messageSource"/>
     </bean>
 
 </beans>

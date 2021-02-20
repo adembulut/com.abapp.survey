@@ -3,8 +3,8 @@ package com.abapp.survey.backend.service.impl;
 import com.abapp.survey.backend.entity.auth.Authority;
 import com.abapp.survey.backend.entity.auth.Page;
 import com.abapp.survey.backend.entity.auth.Role;
-import com.abapp.survey.backend.repository.AuthorityRepository;
 import com.abapp.survey.backend.model.BaseResult;
+import com.abapp.survey.backend.repository.AuthorityRepository;
 import com.abapp.survey.contract.service.AuthorityService;
 
 import java.util.List;
@@ -29,7 +29,12 @@ public class AuthorityServiceImpl implements AuthorityService {
 
     @Override
     public BaseResult addRole(Role role) {
-        return null;
+        try {
+            authorityRepository.saveOrUpdateRole(role);
+            return new BaseResult(true);
+        } catch (Exception e) {
+            return new BaseResult(e);
+        }
     }
 
     @Override

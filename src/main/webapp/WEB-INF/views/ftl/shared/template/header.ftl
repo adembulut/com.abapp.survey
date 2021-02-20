@@ -23,7 +23,7 @@
 
                 <li class="dropdown dropdown-user">
                     <a class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="assets/images/image.png" alt="">
+                        <img src="/assets/images/demo/users/face3.jpg" alt="">
                         <span>${applicationUser.nameSurname}</span>
                         <i class="caret"></i>
                     </a>

@@ -3,10 +3,13 @@ package com.abapp.survey.backend.repository;
 import com.abapp.survey.backend.entity.auth.Role;
 import com.abapp.survey.backend.entity.base.base.Status;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateTemplate;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.SessionScope;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /*
@@ -23,13 +26,16 @@ public class AuthorityRepositoryImpl implements AuthorityRepository {
 
 
     @Override
+    @Transactional
     public void saveOrUpdateRole(Role role) {
-        hibernateTemplate.saveOrUpdate(role);
-//        Session session = sessionFactory.openSession();
-//        Transaction transaction = session.beginTransaction();
-//        session.saveOrUpdate(role);
-//        transaction.commit();
-//        session.close();
+        try (Session session = hibernateTemplate.getSessionFactory().openSession()) {
+            Transaction transaction = session.beginTransaction();
+            role.setRoleCode(role.getRoleCode().toUpperCase());
+            session.save(role);
+            transaction.commit();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

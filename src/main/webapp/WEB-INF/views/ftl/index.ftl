@@ -1,4 +1,4 @@
-<#import "/view/shared/template/main-template.ftl" as template>
+<#import "/shared/template/main-template.ftl" as template>
 <@template.html title="Anasayfa" headerSection=headerSection footerSection=footerSection breadCrumb=breadCrumb>
     <@contentBody/>
 </@template.html>
