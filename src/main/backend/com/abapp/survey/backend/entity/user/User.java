@@ -2,7 +2,7 @@ package com.abapp.survey.backend.entity.user;
 
 import com.abapp.survey.backend.entity.auth.Role;
 import com.abapp.survey.backend.entity.base.base.BaseEntity;
-import com.abapp.survey.backend.model.IAdminUser;
+import com.abapp.survey.backend.model.IUser;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -26,7 +26,7 @@ import java.util.Set;
     date    : 19/02/2021 14:20
 */
 @Entity(name = "users")
-public class User extends BaseEntity implements IAdminUser {
+public class User extends BaseEntity implements IUser {
     @Id
     @Column(name = "username", unique = true, nullable = false)
     private String username;

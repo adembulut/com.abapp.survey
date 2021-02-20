@@ -141,7 +141,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             throw new UserNotAuthenticatedException(errorMessage);
         }
 
-        UserProfileManager.setLocalUser(request, (User) userObject);
+        UserProfileManager.setLoggedUser(request, (User) userObject);
         return true;
     }
 

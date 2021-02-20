@@ -3,7 +3,7 @@ package com.abapp.survey.backend.service.impl;
 import com.abapp.survey.backend.entity.auth.Authority;
 import com.abapp.survey.backend.entity.auth.Page;
 import com.abapp.survey.backend.entity.auth.Role;
-import com.abapp.survey.backend.model.IAdminUser;
+import com.abapp.survey.backend.model.IUser;
 import com.abapp.survey.backend.repository.AuthorizationRepository;
 import com.abapp.survey.contract.service.AuthorizationService;
 import org.slf4j.Logger;
@@ -26,13 +26,13 @@ public class AuthorizationServiceImpl implements AuthorizationService {
     }
 
     @Override
-    public List<Role> getUserRoles(IAdminUser user) {
+    public List<Role> getUserRoles(IUser user) {
 
         return null;
     }
 
     @Override
-    public List<Authority> getUserAuthorities(IAdminUser user) {
+    public List<Authority> getUserAuthorities(IUser user) {
 
         return null;
     }

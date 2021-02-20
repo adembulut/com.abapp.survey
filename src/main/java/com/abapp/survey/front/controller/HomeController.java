@@ -37,7 +37,7 @@ public class HomeController {
 
     @RequestMapping(value = {"/logout"})
     public String logout(HttpServletRequest request){
-        UserProfileManager.removeLocalUser(request);
+        UserProfileManager.removeLoggedUser(request);
         return "index";
     }
 

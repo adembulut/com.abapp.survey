@@ -9,7 +9,7 @@ import java.util.Locale;
     User    : adem.bulut
     Date    : 2/14/21 00:39
 */
-public interface IAdminUser extends Serializable {
+public interface IUser extends Serializable {
     String getUsername();
 
     String getNameSurname();
