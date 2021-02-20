@@ -20,6 +20,7 @@
         <link href="/assets/css/core.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/components.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/colors.css" rel="stylesheet" type="text/css">
+        <link href="/assets/app/css/application.css" rel="stylesheet" type="text/css">
         <!-- /global stylesheets -->
         <#call headerSection/>
 <#--        ${headerSection?html}-->

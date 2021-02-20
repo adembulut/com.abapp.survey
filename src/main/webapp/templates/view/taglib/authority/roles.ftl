@@ -24,11 +24,16 @@
                                 <label><@spring.message code='survey.authority.roleName'/></label>
                                 <@spring.formInput "role.roleName" "class='form-control'"/>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-8">
                                 <label><@spring.message code='survey.authority.roleDescription'/></label>
                                 <@spring.formInput "role.roleDescription" "class='form-control'"/>
                             </div>
-                            <div class="col-md-2">
+                        </div>
+                        <div class="row mx-top-1">
+                            <div class="col-md-12 text-right">
+                                <button type="reset" class="btn btn-primary">
+                                    <@spring.message code='survey.general.reset'/>
+                                </button>
                                 <button type="submit" class="btn btn-primary">
                                     <@spring.message code='survey.authority.save'/>
                                 </button>
