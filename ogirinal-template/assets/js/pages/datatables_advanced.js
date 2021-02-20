@@ -87,7 +87,6 @@ $(function() {
 
     // External table additions
     // ------------------------------
-
     // Enable Select2 select for the length option
     $('.dataTables_length select').select2({
         minimumResultsForSearch: Infinity,
