@@ -1,3 +1,4 @@
+<#import "/view/spring.ftl" as spring />
 <#macro content roleList>
     <div class="row">
         <div class="col-md-12">
@@ -13,7 +14,27 @@
                 </div>
 
                 <div class="panel-body">
-
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label><@spring.message code='survey.authority.roleCode'/></label>
+                                <@spring.formInput "role.roleCode" "class='form-control'"/>
+                            </div>
+                            <div class="col-md-2">
+                                <label><@spring.message code='survey.authority.roleName'/></label>
+                                <@spring.formInput "role.roleName" "class='form-control'"/>
+                            </div>
+                            <div class="col-md-4">
+                                <label><@spring.message code='survey.authority.roleDescription'/></label>
+                                <@spring.formInput "role.roleDescription" "class='form-control'"/>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary">
+                                    <@spring.message code='survey.authority.save'/>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

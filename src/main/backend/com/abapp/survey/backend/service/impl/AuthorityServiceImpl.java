@@ -1,38 +1,30 @@
 package com.abapp.survey.backend.service.impl;
 
-import com.abapp.survey.backend.rowmapper.auth.AuthorityMapper;
-import com.abapp.survey.backend.rowmapper.auth.RoleMapper;
-import com.abapp.survey.backend.service.IConnectionPool;
-import com.abapp.survey.contract.model.BaseResult;
-import com.abapp.survey.contract.model.auth.Authority;
-import com.abapp.survey.contract.model.auth.Page;
-import com.abapp.survey.contract.model.auth.Role;
+import com.abapp.survey.backend.entity.auth.Authority;
+import com.abapp.survey.backend.entity.auth.Page;
+import com.abapp.survey.backend.entity.auth.Role;
+import com.abapp.survey.backend.repository.AuthorityRepository;
+import com.abapp.survey.backend.model.BaseResult;
 import com.abapp.survey.contract.service.AuthorityService;
 
 import java.util.List;
 
 /*
-    Project : com.abapp.survey
-    User    : adem.bulut
-    Date    : 2/14/21 22:54
+    project : com.abapp.survey
+    user    : adem.bulut
+    date    : 19/02/2021 16:50
 */
 public class AuthorityServiceImpl implements AuthorityService {
-    private IConnectionPool connectionPool;
+    private AuthorityRepository authorityRepository;
 
     @Override
     public List<Role> getAllRoles() {
-        return connectionPool.getJdbcTemplate().query("select r.* from role r where 1=1", RoleMapper.getInstance());
+        return authorityRepository.listAllRoles();
     }
 
     @Override
     public List<Authority> getRoleAuthorities(Role role) {
-        if (role == null || role.getCode() == null) {
-            return null;
-        }
-        String sql = "select a.* from authority a " +
-                "inner join role_authority ra on a.authority_code = ra.authority_code " +
-                "where ra.role_code=? ";
-        return connectionPool.getJdbcTemplate().query(sql, new Object[]{role.getCode()}, AuthorityMapper.getInstance());
+        return null;
     }
 
     @Override
@@ -65,7 +57,7 @@ public class AuthorityServiceImpl implements AuthorityService {
         return null;
     }
 
-    public void setConnectionPool(IConnectionPool connectionPool) {
-        this.connectionPool = connectionPool;
+    public void setAuthorityRepository(AuthorityRepository authorityRepository) {
+        this.authorityRepository = authorityRepository;
     }
 }

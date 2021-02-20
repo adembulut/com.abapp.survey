@@ -1,4 +1,4 @@
-package com.abapp.survey.contract.model;
+package com.abapp.survey.backend.model;
 
 /*
     Project : com.abapp.survey

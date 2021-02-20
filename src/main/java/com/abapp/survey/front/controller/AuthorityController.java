@@ -1,6 +1,6 @@
 package com.abapp.survey.front.controller;
 
-import com.abapp.survey.contract.model.auth.Role;
+import com.abapp.survey.backend.entity.auth.Role;
 import com.abapp.survey.contract.service.AuthorityService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -21,6 +21,9 @@ public class AuthorityController {
     @RequestMapping("/roles")
     public String getRoles(ModelMap map){
         List<Role> roles = authorityService.getAllRoles();
+        Role role = new Role();
+        role.setRoleCode("adem");
+        map.put("role",role);
         map.put("roleList",roles);
 
         return "authority/roles";

@@ -1,9 +1,9 @@
 package com.abapp.survey.contract.service;
 
-import com.abapp.survey.contract.model.BaseResult;
-import com.abapp.survey.contract.model.auth.Authority;
-import com.abapp.survey.contract.model.auth.Page;
-import com.abapp.survey.contract.model.auth.Role;
+import com.abapp.survey.backend.entity.auth.Authority;
+import com.abapp.survey.backend.entity.auth.Page;
+import com.abapp.survey.backend.entity.auth.Role;
+import com.abapp.survey.backend.model.BaseResult;
 
 import java.util.List;
 

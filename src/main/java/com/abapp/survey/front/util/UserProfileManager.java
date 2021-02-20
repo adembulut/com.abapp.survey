@@ -1,7 +1,6 @@
 package com.abapp.survey.front.util;
 
-import com.abapp.survey.contract.model.user.AdminUser;
-
+import com.abapp.survey.backend.model.IAdminUser;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpSession;
     Date    : 2/14/21 01:03
 */
 public class UserProfileManager {
-    public static void setLocalUser(HttpServletRequest request, AdminUser user){
+    public static void setLocalUser(HttpServletRequest request, IAdminUser user){
         HttpSession session = request.getSession(true);
         session.setAttribute(ProjectConstant.APP_USER_SESSION, user);
         request.setAttribute(ProjectConstant.APP_USER_SESSION, user);

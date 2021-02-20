@@ -5,7 +5,7 @@
         http://www.springframework.org/schema/mvc	  http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <bean name="authorizationService" class="com.abapp.survey.backend.service.impl.AuthorizationServiceImpl">
-        <property name="connectionPool" ref="connectionPool"/>
+        <property name="authorizationRepository" ref="authorizationRepository"/>
     </bean>
 
     <bean name="userLoginService" class="com.abapp.survey.backend.service.impl.UserLoginServiceImpl">
@@ -13,7 +13,15 @@
         <property name="connectionPool" ref="connectionPool"/>
     </bean>
 
+<!--    <bean name="authorityServiceOld" class="com.abapp.survey.backend.service.impl.AuthorityServiceImplOld">-->
+<!--        <property name="connectionPool" ref="connectionPool"/>-->
+<!--    </bean>-->
+
+
+
+    <!--new services-->
     <bean name="authorityService" class="com.abapp.survey.backend.service.impl.AuthorityServiceImpl">
-        <property name="connectionPool" ref="connectionPool"/>
+        <property name="authorityRepository" ref="authorityRepository"/>
     </bean>
+
 </beans>

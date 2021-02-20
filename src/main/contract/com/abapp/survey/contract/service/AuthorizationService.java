@@ -1,12 +1,12 @@
 package com.abapp.survey.contract.service;
 
-import com.abapp.survey.contract.model.IAdminUser;
-import com.abapp.survey.contract.model.auth.Authority;
-import com.abapp.survey.contract.model.auth.Page;
-import com.abapp.survey.contract.model.auth.Role;
+import com.abapp.survey.backend.entity.auth.Authority;
+import com.abapp.survey.backend.entity.auth.Page;
+import com.abapp.survey.backend.entity.auth.Role;
+import com.abapp.survey.backend.model.IAdminUser;
+
 
 import java.util.List;
-import java.util.Set;
 
 /*
     Project : com.abapp.survey

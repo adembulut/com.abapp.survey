@@ -1,6 +1,6 @@
 package com.abapp.survey.front.interceptor;
 
-import com.abapp.survey.contract.model.user.AdminUser;
+import com.abapp.survey.backend.entity.user.User;
 import com.abapp.survey.front.exception.UserNotAuthenticatedException;
 import com.abapp.survey.front.exception.UserNotAuthenticatedExceptionJSON;
 import com.abapp.survey.front.service.UserLoginService;
@@ -57,8 +57,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                 sessionId = session.getId();
             }
 
-            if (userObject instanceof AdminUser) {
-                AdminUser user = (AdminUser) userObject;
+            if (userObject instanceof User) {
+                User user = (User) userObject;
                 LOGGER.debug("::preHandle sessionId:" + sessionId + " path:" + pathInfo + " user.email:" + user.getEmail());
             }
         }
@@ -66,12 +66,11 @@ public class LoginInterceptor implements HandlerInterceptor {
         //security-disabled begin
         if(!securityEnabled) {
             if (userObject == null) {
-                AdminUser adminUser = new AdminUser();
+                User adminUser = new User();
                 adminUser.setUsername("adembulut");
                 adminUser.setNameSurname("Adem Bulut");
                 adminUser.setEmail("adembulutapp@gmail.com");
                 adminUser.setLocale(Locale.forLanguageTag("tr_TR"));
-                adminUser.setUserId(1);
                 userObject = adminUser;
             }
         }
@@ -79,7 +78,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
         String errorMessage = null;
-        if ((!(userObject instanceof AdminUser)) || isLoginRequest(request, pathInfo)) {
+        if ((!(userObject instanceof User)) || isLoginRequest(request, pathInfo)) {
 
             if (userObject != null)
                 session.removeAttribute(ProjectConstant.APP_USER_SESSION);
@@ -90,7 +89,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                         request.getParameter(ProjectConstant.APP_TOKEN_PARAM), userObject);
             }
 
-            AdminUser user = checkLogin(session, request);
+            User user = checkLogin(session, request);
             String username = RequestUtils.getString(request,ProjectConstant.APP_USERNAME_PARAM,null);
             String password = RequestUtils.getString(request,ProjectConstant.APP_PASSWORD_PARAM,null);
             if(username!=null||password!=null){
@@ -142,7 +141,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             throw new UserNotAuthenticatedException(errorMessage);
         }
 
-        UserProfileManager.setLocalUser(request, (AdminUser) userObject);
+        UserProfileManager.setLocalUser(request, (User) userObject);
         return true;
     }
 
@@ -170,7 +169,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 
 
-    private AdminUser checkLogin(HttpSession session, HttpServletRequest request)
+    private User checkLogin(HttpSession session, HttpServletRequest request)
             throws UserNotAuthenticatedException {
 
         String username = request.getParameter(ProjectConstant.APP_USERNAME_PARAM);
@@ -203,7 +202,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
         String host = request.getHeader("Host");
 
-        AdminUser user = null;
+        User user = null;
 
         try {
             user = userLoginService.userLogin(username, password, token, remoteIP, host, cookieId);

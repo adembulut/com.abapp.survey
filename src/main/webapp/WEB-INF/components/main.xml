@@ -36,9 +36,9 @@
             <property name="userLoginService" ref="userLoginService"/>
             <property name="securityEnabled" value="false"/>
         </bean>
-        <bean class="com.abapp.survey.front.interceptor.AuthorizationInterceptor" init-method="init">
-            <property name="authorizationService" ref="authorizationService"/>
-        </bean>
+<!--        <bean class="com.abapp.survey.front.interceptor.AuthorizationInterceptor" init-method="init">-->
+<!--            <property name="authorizationService" ref="authorizationService"/>-->
+<!--        </bean>-->
     </mvc:interceptors>
 
 

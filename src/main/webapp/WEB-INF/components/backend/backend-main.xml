@@ -10,7 +10,6 @@
           classpath:properties/${app.env}/application.properties"
             ignore-unresolvable="true"/>
 
-
 <!--    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">-->
 <!--        <property name="locations">-->
 <!--            <list>-->
@@ -38,7 +37,6 @@
 <!--        </property>-->
 <!--    </bean>-->
 
-
 <!--    <bean class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">-->
 <!--        <property name="locations">-->
 <!--            <value>classpath:properties/application.properties</value>-->
@@ -48,4 +46,5 @@
 
     <import resource="services.xml"/>
     <import resource="db.xml"/>
+    <import resource="backend-repositories.xml"/>
 </beans>

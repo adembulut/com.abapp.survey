@@ -1,6 +1,7 @@
 package com.abapp.survey.front.service;
 
-import com.abapp.survey.contract.model.user.AdminUser;
+
+import com.abapp.survey.backend.entity.user.User;
 
 /*
     Project : com.abapp.survey
@@ -8,5 +9,5 @@ import com.abapp.survey.contract.model.user.AdminUser;
     Date    : 2/14/21 00:53
 */
 public interface UserLoginService {
-    AdminUser userLogin(String email, String password, int token, String ipAddress, String host, String cookieId);
+    User userLogin(String email, String password, int token, String ipAddress, String host, String cookieId);
 }

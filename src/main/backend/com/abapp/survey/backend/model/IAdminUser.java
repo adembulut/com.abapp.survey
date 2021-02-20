@@ -1,9 +1,7 @@
-package com.abapp.survey.contract.model;
+package com.abapp.survey.backend.model;
 
-import com.abapp.survey.contract.model.auth.Authority;
 
 import java.io.Serializable;
-import java.util.List;
 import java.util.Locale;
 
 /*
@@ -12,10 +10,11 @@ import java.util.Locale;
     Date    : 2/14/21 00:39
 */
 public interface IAdminUser extends Serializable {
-    long getUserId();
     String getUsername();
+
     String getNameSurname();
+
     Locale getLocale();
+
     String getEmail();
-    List<Authority> getAuthorityList();
 }

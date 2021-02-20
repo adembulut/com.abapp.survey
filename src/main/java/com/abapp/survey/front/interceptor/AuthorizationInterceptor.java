@@ -1,8 +1,8 @@
 package com.abapp.survey.front.interceptor;
 
-import com.abapp.survey.contract.model.auth.Authority;
-import com.abapp.survey.contract.model.auth.Page;
-import com.abapp.survey.contract.model.user.AdminUser;
+import com.abapp.survey.backend.entity.auth.Authority;
+import com.abapp.survey.backend.entity.auth.Page;
+import com.abapp.survey.backend.entity.user.User;
 import com.abapp.survey.contract.service.AuthorizationService;
 import com.abapp.survey.front.exception.UserNotAuthorizedException;
 import com.abapp.survey.front.util.ProjectConstant;
@@ -23,6 +23,10 @@ import java.util.Set;
 public class AuthorizationInterceptor implements HandlerInterceptor {
     private AuthorizationService authorizationService;
     private List<Page> pageSet;
+
+    public void setAuthorizationService(AuthorizationService authorizationService) {
+        this.authorizationService = authorizationService;
+    }
 
     public void init() {
         pageSet = authorizationService.getAllPages();
@@ -47,11 +51,11 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
             return true;
         }
 
-        String finalPathInfo = pathInfo;
-        Optional<Page> optionalPageAuthority = pageSet.stream().filter(x->x.getUrl().equalsIgnoreCase(finalPathInfo)).findFirst();
-        if(!optionalPageAuthority.isPresent()){
-            return true;
-        }
+//        String finalPathInfo = pathInfo;
+//        Optional<Page> optionalPageAuthority = pageSet.stream().filter(x->x.getUrl().equalsIgnoreCase(finalPathInfo)).findFirst();
+//        if(!optionalPageAuthority.isPresent()){
+//            return true;
+//        }
         Object userObject = request.getParameter(ProjectConstant.APP_USER_SESSION);
         if(userObject==null){
             HttpSession session = request.getSession();
@@ -60,29 +64,24 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
             }
         }
 
-        if(userObject==null || !(userObject instanceof AdminUser)){
+        if(userObject==null || !(userObject instanceof User)){
             return true;
         }
-        AdminUser user = (AdminUser) userObject;
-        List<Authority> authorityList = user.getAuthorityList();
-        Page page = optionalPageAuthority.get();
-
-        if(page.getAuthorityList()!=null){
-            boolean have = false;
-            for (Authority authority : page.getAuthorityList()) {
-                if(authorityList.contains(authority)){
-                    have=true;
-                }
-            }
-            if(!have){
-                throw new UserNotAuthorizedException();
-            }
-        }
+        User user = (User) userObject;
+//        List<Authority> authorityList = user.getAuthorityList();
+//        Page page = optionalPageAuthority.get();
+//
+//        if(page.getAuthorityList()!=null){
+//            boolean have = false;
+//            for (Authority authority : page.getAuthorityList()) {
+//                if(authorityList.contains(authority)){
+//                    have=true;
+//                }
+//            }
+//            if(!have){
+//                throw new UserNotAuthorizedException();
+//            }
+//        }
         return true;
-    }
-
-
-    public void setAuthorizationService(AuthorizationService authorizationService) {
-        this.authorizationService = authorizationService;
     }
 }
