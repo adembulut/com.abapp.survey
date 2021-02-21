@@ -2,6 +2,7 @@ package com.abapp.survey.backend.repository;
 
 import com.abapp.survey.backend.entity.auth.Page;
 import com.abapp.survey.backend.entity.auth.Role;
+import com.abapp.survey.contract.model.exception.SurveyException;
 
 import java.util.List;
 
@@ -11,7 +12,9 @@ import java.util.List;
     date    : 19/02/2021 16:51
 */
 public interface AuthorityRepository {
-    void saveOrUpdateRole(Role role);
-    Role getRole(String code);
-    List<Role> listAllRoles();
+    void addRole(Role role) throws SurveyException;
+    void updateRole(Role role) throws SurveyException;
+    Role getRole(String code) throws SurveyException;
+    List<Role> listAllRoles() throws SurveyException;
+    void removeRole(Role role) throws SurveyException;
 }

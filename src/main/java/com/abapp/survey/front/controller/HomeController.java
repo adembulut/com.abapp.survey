@@ -1,5 +1,6 @@
 package com.abapp.survey.front.controller;
 
+import com.abapp.survey.backend.entity.user.User;
 import com.abapp.survey.front.util.ProjectConstant;
 import com.abapp.survey.front.util.UserProfileManager;
 import org.springframework.context.i18n.LocaleContextHolder;

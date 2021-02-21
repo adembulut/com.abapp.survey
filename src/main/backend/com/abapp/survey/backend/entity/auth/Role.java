@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -100,5 +101,10 @@ public class Role extends BaseEntity {
     @Override
     public int hashCode() {
         return Objects.hash(roleCode);
+    }
+
+    @PrePersist
+    public void toUpperName(){
+        this.roleCode=this.roleCode.toUpperCase();
     }
 }

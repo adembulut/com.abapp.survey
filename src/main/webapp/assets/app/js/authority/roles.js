@@ -35,6 +35,7 @@ $(document).ready(function(){
         }
     });
     $('button[name="role-save"]').on("click",function(){roleSave()});
+    $('button[name="role-remove"]').on("click",function(x){removeRole(x);});
 })
 function roleSave(){
     if(!validator.form()){
@@ -51,7 +52,7 @@ function roleSave(){
                 alert("başarılı");
                 location.reload();
             }else{
-                alert(result.errorMessage);
+                alert(getBundle(result.errorMessage));
             }
         },
         error:function(xhr,error){
@@ -61,4 +62,33 @@ function roleSave(){
 
         }
     })
+}
+
+
+function removeRole(x){
+    let elem = x.target;
+    let roleCode = elem.dataset.code;
+    if(roleCode){
+        $.ajax({
+            url:'/authority/role-remove',
+            data:{roleCode:roleCode},
+            type:'POST',
+            dataType:'JSON',
+            success:function(result){
+                if(result.success){
+                    alert("başarılı");
+                    location.reload();
+                }else{
+                    alert(result.errorMessage);
+                }
+            },
+            error:function(xhr,error){
+                console.log(xhr);
+                console.log(error);
+            },
+            complete:function(){
+
+            }
+        })
+    }
 }

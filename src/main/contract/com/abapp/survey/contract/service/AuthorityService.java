@@ -13,19 +13,17 @@ import java.util.List;
     Date    : 2/14/21 22:48
 */
 public interface AuthorityService {
-    List<Role> getAllRoles();
+    BaseResult<List<Role>> getAllRoles();
 
     List<Authority> getRoleAuthorities(Role role);
 
-    BaseResult addRole(Role role);
+    BaseResult<Boolean> addRole(Role role);
 
-    BaseResult updateRoleDescription(Role role);
+    BaseResult<Boolean> removeRole(Role role);
 
-    BaseResult removeRole(Role role);
+    BaseResult<Boolean> addAuthority(Authority authority);
 
-    BaseResult addAuthority(Authority authority);
+    BaseResult<Boolean> addPageAuthority(Page page, Authority authority);
 
-    BaseResult addPageAuthority(Page page, Authority authority);
-
-    BaseResult addPage(Page page);
+    BaseResult<Boolean> addPage(Page page);
 }

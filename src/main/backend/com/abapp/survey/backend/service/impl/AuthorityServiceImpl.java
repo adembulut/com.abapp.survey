@@ -5,6 +5,7 @@ import com.abapp.survey.backend.entity.auth.Page;
 import com.abapp.survey.backend.entity.auth.Role;
 import com.abapp.survey.backend.model.BaseResult;
 import com.abapp.survey.backend.repository.AuthorityRepository;
+import com.abapp.survey.contract.model.exception.SurveyException;
 import com.abapp.survey.contract.service.AuthorityService;
 
 import java.util.List;
@@ -16,10 +17,19 @@ import java.util.List;
 */
 public class AuthorityServiceImpl implements AuthorityService {
     private AuthorityRepository authorityRepository;
+    private static final String TECH_ERROR="survey.general.error.technical";
 
     @Override
-    public List<Role> getAllRoles() {
-        return authorityRepository.listAllRoles();
+    public BaseResult<List<Role>> getAllRoles() {
+        BaseResult<List<Role>> result = new BaseResult<>();
+        try {
+            result.setData(authorityRepository.listAllRoles());
+        }catch (SurveyException e){
+            result.setErrorMessage(e.getMessageCode());
+        }catch (Exception e){
+            result.setErrorMessage(TECH_ERROR);
+        }
+        return result;
     }
 
     @Override
@@ -28,37 +38,45 @@ public class AuthorityServiceImpl implements AuthorityService {
     }
 
     @Override
-    public BaseResult addRole(Role role) {
+    public BaseResult<Boolean> addRole(Role role) {
+        BaseResult<Boolean> baseResult = new BaseResult<>();
         try {
-            authorityRepository.saveOrUpdateRole(role);
-            return new BaseResult(true);
-        } catch (Exception e) {
-            return new BaseResult(e);
+            authorityRepository.addRole(role);
+            baseResult.setData(true);
+        } catch (SurveyException e) {
+            baseResult.setErrorMessage(e.getMessageCode());
+        }catch (Exception e){
+            baseResult.setErrorMessage(TECH_ERROR);
         }
+        return baseResult;
     }
 
     @Override
-    public BaseResult updateRoleDescription(Role role) {
+    public BaseResult<Boolean> removeRole(Role role) {
+        BaseResult<Boolean> result = new BaseResult<>();
+        try{
+            authorityRepository.removeRole(role);
+            result.setData(true);
+        }catch (SurveyException e){
+            result.setErrorMessage(e.getMessageCode());
+        }catch (Exception e){
+            result.setErrorMessage(TECH_ERROR);
+        }
+        return result;
+    }
+
+    @Override
+    public BaseResult<Boolean> addAuthority(Authority authority) {
         return null;
     }
 
     @Override
-    public BaseResult removeRole(Role role) {
+    public BaseResult<Boolean> addPageAuthority(Page page, Authority authority) {
         return null;
     }
 
     @Override
-    public BaseResult addAuthority(Authority authority) {
-        return null;
-    }
-
-    @Override
-    public BaseResult addPageAuthority(Page page, Authority authority) {
-        return null;
-    }
-
-    @Override
-    public BaseResult addPage(Page page) {
+    public BaseResult<Boolean> addPage(Page page) {
         return null;
     }
 

@@ -1,4 +1,7 @@
+let dontUse = {success:false,errorMessage:""};
+
 const DEFAULT_MODAL = $('#modal_default');
+
 function openModal(modal,title,content){
     if(modal===null){
         return;
@@ -28,4 +31,9 @@ function getBundle(code,...arg) {
         });
     }
     return msg;
+}
+
+function alphaOnly(event) {
+    let key = event.keyCode;
+    return ((key >= 65 && key <= 90) || (key >= 97 && key <= 122));
 }

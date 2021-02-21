@@ -47,8 +47,8 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <label for="roleCode"><@spring.message code='survey.authority.roleCode'/></label>
-                                <input type="text" class="form-control" name="roleCode" id="roleCode"
-                                       value="${role.roleCode}">
+                                <input type="text" class="form-control text-uppercase" name="roleCode" id="roleCode"
+                                       value="${role.roleCode}" onkeypress="return alphaOnly(event)">
                             </div>
                             <div class="col-md-2">
                                 <label for="roleName"><@spring.message code='survey.authority.roleName'/></label>
@@ -116,7 +116,7 @@
                                         <i class="icon-pencil7"></i>
                                         <@spring.message code='survey.authority.process.button.editAuthorities'/>
                                     </button>
-                                    <button type="button" class="btn btn-danger btn-xs">
+                                    <button type="button" class="btn btn-danger btn-xs" name="role-remove" data-code="${role.roleCode}">
                                         <i class="icon-box-remove"></i>
                                         <@spring.message code='survey.general.button.remove'/>
                                     </button>
