@@ -9,11 +9,9 @@ import com.abapp.survey.contract.model.exception.UserMessageException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.exception.ConstraintViolationException;
 import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -35,7 +33,7 @@ public class AuthorityRepositoryImpl implements AuthorityRepository {
     @Transactional
     public void addRole(Role role) throws SurveyException {
         Role temp = getRole(role.getRoleCode());
-        if(temp!=null){
+        if (temp != null) {
             throw new UserMessageException("survey.error.role.role_duplicate");
         }
         try (Session session = sessionFactory.openSession()) {
@@ -43,7 +41,7 @@ public class AuthorityRepositoryImpl implements AuthorityRepository {
             role.setRoleCode(role.getRoleCode().toUpperCase());
             session.save(role);
             transaction.commit();
-        }catch (Exception e) {
+        } catch (Exception e) {
             logger.error("an error occurred while saveRole", e);
             throw new TechnicalException(e);
         }

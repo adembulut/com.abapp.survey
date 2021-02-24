@@ -21,13 +21,21 @@
         <link href="/assets/css/components.css" rel="stylesheet" type="text/css">
         <link href="/assets/css/colors.css" rel="stylesheet" type="text/css">
         <link href="/assets/app/css/application.css" rel="stylesheet" type="text/css">
+
+        <script type="text/javascript" src="/assets/js/plugins/notifications/bootbox.min.js"></script>
+        <script type="text/javascript" src="/assets/js/plugins/notifications/sweet_alert.min.js"></script>
         <!-- /global stylesheets -->
         <#call headerSection/>
 <#--        ${headerSection?html}-->
     </head>
 
     <body>
-
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">adem bulut adem bulut</p>
+        </div>
+    </div>
     <!-- Main navbar -->
     <@header.header/>
     <!-- /main navbar -->

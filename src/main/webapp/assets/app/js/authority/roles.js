@@ -42,6 +42,7 @@ function roleSave(){
         return;
     }
     let data = $('form[name="new-role"]').serialize();
+    showPleaseWait();
     $.ajax({
         url:'/authority/role-save',
         type:'POST',
@@ -49,17 +50,18 @@ function roleSave(){
         dataType:'JSON',
         success:function(result){
             if(result.success){
-                alert("başarılı");
-                location.reload();
+                showSuccessWithCallBack(function(){
+                   location.reload();
+                });
             }else{
-                alert(getBundle(result.errorMessage));
+                showError(getBundle(result.errorMessage));
             }
         },
-        error:function(xhr,error){
-            alert("error");
+        error:function(xhr,text,error){
+            ajaxError(xhr,text,error);
         },
         complete:function(){
-
+            hidePreload("");
         }
     })
 }
@@ -69,6 +71,7 @@ function removeRole(x){
     let elem = x.target;
     let roleCode = elem.dataset.code;
     if(roleCode){
+        showPleaseWait();
         $.ajax({
             url:'/authority/role-remove',
             data:{roleCode:roleCode},
@@ -76,18 +79,18 @@ function removeRole(x){
             dataType:'JSON',
             success:function(result){
                 if(result.success){
-                    alert("başarılı");
-                    location.reload();
+                    showSuccessWithCallBack(function(){
+                        location.reload();
+                    });
                 }else{
-                    alert(result.errorMessage);
+                    showError(getBundle(result.errorMessage));
                 }
             },
-            error:function(xhr,error){
-                console.log(xhr);
-                console.log(error);
+            error:function(xhr,text,error){
+                ajaxError(xhr,text,error);
             },
             complete:function(){
-
+                hidePreload();
             }
         })
     }
